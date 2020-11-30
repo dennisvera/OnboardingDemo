@@ -9,19 +9,21 @@
 /* Begin PBXBuildFile section */
 		E179B2612574A0290049418F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B2602574A0290049418F /* AppDelegate.swift */; };
 		E179B2632574A0290049418F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B2622574A0290049418F /* SceneDelegate.swift */; };
-		E179B2652574A0290049418F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B2642574A0290049418F /* ViewController.swift */; };
+		E179B2652574A0290049418F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B2642574A0290049418F /* OnboardingViewController.swift */; };
 		E179B26A2574A02A0049418F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E179B2692574A02A0049418F /* Assets.xcassets */; };
 		E179B26D2574A02A0049418F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E179B26B2574A02A0049418F /* LaunchScreen.storyboard */; };
+		E179B27B257572500049418F /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B27A257572500049418F /* OnboardingCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E179B25D2574A0290049418F /* Audible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E179B2602574A0290049418F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E179B2622574A0290049418F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E179B2642574A0290049418F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E179B2642574A0290049418F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E179B2692574A02A0049418F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E179B26C2574A02A0049418F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E179B26E2574A02A0049418F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E179B27A257572500049418F /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingCollectionViewCell.swift; path = ../OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +93,7 @@
 		E179B2772574A0800049418F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				E179B2642574A0290049418F /* ViewController.swift */,
+				E179B279257568800049418F /* Onboarding  */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -102,6 +104,23 @@
 				E179B26E2574A02A0049418F /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E179B279257568800049418F /* Onboarding  */ = {
+			isa = PBXGroup;
+			children = (
+				E179B2642574A0290049418F /* OnboardingViewController.swift */,
+				E179B27C257572560049418F /* Collection View Cell */,
+			);
+			path = "Onboarding ";
+			sourceTree = "<group>";
+		};
+		E179B27C257572560049418F /* Collection View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E179B27A257572500049418F /* OnboardingCollectionViewCell.swift */,
+			);
+			path = "Collection View Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,9 +193,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E179B2652574A0290049418F /* ViewController.swift in Sources */,
+				E179B2652574A0290049418F /* OnboardingViewController.swift in Sources */,
 				E179B2612574A0290049418F /* AppDelegate.swift in Sources */,
 				E179B2632574A0290049418F /* SceneDelegate.swift in Sources */,
+				E179B27B257572500049418F /* OnboardingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

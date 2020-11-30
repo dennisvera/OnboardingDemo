@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window = UIWindow(windowScene: windowScene)
 
     // Configure Window
-    window?.rootViewController = ViewController()
+    window?.rootViewController = OnboardingViewController()
 
     // Make Key and Visible
     window?.makeKeyAndVisible()
