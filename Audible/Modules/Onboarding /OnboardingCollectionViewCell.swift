@@ -10,6 +10,14 @@ import UIKit
 
 final class OnboardingCollectionViewCell: UICollectionViewCell {
 
+  // MARK: - Static Properties
+
+  static var reuseIdentifier: String {
+      return String(describing: self)
+  }
+
+  // MARK: - Properties
+
   private let imageView: UIImageView = {
     let imageView = UIImageView()
     imageView.clipsToBounds = true

@@ -14,11 +14,11 @@ final class OnboardingViewController: UIViewController {
 
   private var collectionView: UICollectionView!
 
-  private let pageController: UIPageControl = {
+  private lazy var pageController: UIPageControl = {
     let pageController = UIPageControl()
-    pageController.numberOfPages = 3
     pageController.pageIndicatorTintColor = .lightGray
     pageController.currentPageIndicatorTintColor = .orange
+    pageController.numberOfPages = onBoardingPages.count + 1
     return pageController
   }()
 
@@ -70,7 +70,11 @@ final class OnboardingViewController: UIViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.backgroundColor = .white
-    collectionView.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+    collectionView.register(OnboardingCollectionViewCell.self,
+                            forCellWithReuseIdentifier: OnboardingCollectionViewCell.reuseIdentifier)
+
+    collectionView.register(LoginCollectionViewCell.self,
+                            forCellWithReuseIdentifier: LoginCollectionViewCell.reuseIdentifier)
   }
 
   private func setupView() {
@@ -90,14 +94,14 @@ final class OnboardingViewController: UIViewController {
       // Skip Button
       skipButton.widthAnchor.constraint(equalToConstant: 40),
       skipButton.heightAnchor.constraint(equalToConstant: 40),
-      skipButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 12),
-      skipButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+      skipButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      skipButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
 
       // Next Button
       nextButton.widthAnchor.constraint(equalToConstant: 40),
       nextButton.heightAnchor.constraint(equalToConstant: 40),
-      nextButton.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 12),
-      nextButton.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -10),
+      nextButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
 
       // Collection View
       collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -107,9 +111,9 @@ final class OnboardingViewController: UIViewController {
 
       // Page Controller
       pageController.heightAnchor.constraint(equalToConstant: 40),
-      pageController.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       pageController.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      pageController.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+      pageController.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      pageController.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     ])
   }
 
@@ -149,19 +153,42 @@ final class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return onBoardingPages.count
+    return onBoardingPages.count + 1
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! OnboardingCollectionViewCell
+    if indexPath.item == onBoardingPages.count {
+      guard let loginCell = collectionView.dequeueReusableCell(withReuseIdentifier: LoginCollectionViewCell.reuseIdentifier,
+                                                          for: indexPath) as? LoginCollectionViewCell else {
+                                                           fatalError("Unable to Dequeue Cell.") }
+
+      return loginCell
+    }
+    
+   guard let onboardingCell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.reuseIdentifier,
+                                                       for: indexPath) as? OnboardingCollectionViewCell else {
+                                                        fatalError("Unable to Dequeue Cell.") }
 
     let onboardingPage = onBoardingPages[indexPath.item]
 
-    cell.configure(with: onboardingPage)
-    return cell
+    onboardingCell.configure(with: onboardingPage)
+
+    return onboardingCell
   }
 }
 
 // MARK: - UICollectionView Delegate
 
 extension OnboardingViewController: UICollectionViewDelegate {}
+
+// MARK: - UIScrollView Delegate
+
+extension OnboardingViewController {
+
+  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+
+    let pageNumber = Int(targetContentOffset.pointee.x / view.frame.width)
+    print(pageNumber)
+    pageController.currentPage = pageNumber
+  }
+}
