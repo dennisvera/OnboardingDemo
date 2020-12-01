@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class OnboardingViewController: UIViewController {
+final class OnboardingViewController: UIViewController, UICollectionViewDelegateFlowLayout {
 
   // MARK: - Properties
 
@@ -66,10 +66,16 @@ final class OnboardingViewController: UIViewController {
   // MARK: - Helper Methods
 
   private func setupCollectionView() {
-    collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCollectionViewLayout())
-    collectionView.delegate = self
-    collectionView.dataSource = self
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .horizontal
+    layout.minimumLineSpacing = 0
+
+    collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
+    collectionView.isPagingEnabled = true
+    collectionView.dataSource = self
+    collectionView.delegate = self
+
     collectionView.register(OnboardingCollectionViewCell.self,
                             forCellWithReuseIdentifier: OnboardingCollectionViewCell.reuseIdentifier)
 
@@ -116,37 +122,6 @@ final class OnboardingViewController: UIViewController {
       pageController.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     ])
   }
-
-  // MARK: - UICollection View Layout
-
-  private func createCollectionViewLayout() -> UICollectionViewLayout {
-    let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
-      return self.createLayoutSection()
-    }
-
-    let config = UICollectionViewCompositionalLayoutConfiguration()
-    layout.configuration = config
-
-    return layout
-  }
-
-  private func createLayoutSection() -> NSCollectionLayoutSection {
-    // Item
-    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                          heightDimension: .fractionalHeight(1))
-    let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-    // Group
-    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                           heightDimension: .fractionalHeight(1))
-    let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-
-    // Section
-    let section = NSCollectionLayoutSection(group: group)
-    section.orthogonalScrollingBehavior = .groupPaging
-
-    return section
-  }
 }
 
 // MARK: - UICollectionView Data Source
@@ -159,15 +134,15 @@ extension OnboardingViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.item == onBoardingPages.count {
       guard let loginCell = collectionView.dequeueReusableCell(withReuseIdentifier: LoginCollectionViewCell.reuseIdentifier,
-                                                          for: indexPath) as? LoginCollectionViewCell else {
-                                                           fatalError("Unable to Dequeue Cell.") }
+                                                               for: indexPath) as? LoginCollectionViewCell else {
+                                                                fatalError("Unable to Dequeue Cell.") }
 
       return loginCell
     }
     
-   guard let onboardingCell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.reuseIdentifier,
-                                                       for: indexPath) as? OnboardingCollectionViewCell else {
-                                                        fatalError("Unable to Dequeue Cell.") }
+    guard let onboardingCell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.reuseIdentifier,
+                                                                  for: indexPath) as? OnboardingCollectionViewCell else {
+                                                                    fatalError("Unable to Dequeue Cell.") }
 
     let onboardingPage = onBoardingPages[indexPath.item]
 
@@ -179,7 +154,12 @@ extension OnboardingViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionView Delegate
 
-extension OnboardingViewController: UICollectionViewDelegate {}
+extension OnboardingViewController: UICollectionViewDelegate {
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: view.frame.width, height: view.frame.height)
+  }
+}
 
 // MARK: - UIScrollView Delegate
 
@@ -188,7 +168,6 @@ extension OnboardingViewController {
   func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 
     let pageNumber = Int(targetContentOffset.pointee.x / view.frame.width)
-    print(pageNumber)
     pageController.currentPage = pageNumber
   }
 }
