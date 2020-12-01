@@ -14,6 +14,30 @@ final class OnboardingViewController: UIViewController {
 
   private var collectionView: UICollectionView!
 
+  private let pageController: UIPageControl = {
+    let pageController = UIPageControl()
+    pageController.numberOfPages = 3
+    pageController.pageIndicatorTintColor = .lightGray
+    pageController.currentPageIndicatorTintColor = .orange
+    return pageController
+  }()
+
+  // MARK: -
+
+  private let skipButton: UIButton = {
+    let button = UIButton(type: .system)
+    button.setTitle("Skip", for: .normal)
+    button.setTitleColor(.orange, for: .normal)
+    return button
+  }()
+
+  private let nextButton: UIButton = {
+    let button = UIButton(type: .system)
+    button.setTitle("Next", for: .normal)
+    button.setTitleColor(.orange, for: .normal)
+    return button
+  }()
+
   // MARK: -
 
   private let onBoardingPages: [Onboarding] = {
@@ -35,8 +59,8 @@ final class OnboardingViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    setupView()
     setupCollectionView()
+    setupView()
   }
 
   // MARK: - Helper Methods
@@ -46,16 +70,46 @@ final class OnboardingViewController: UIViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.backgroundColor = .white
-    collectionView.translatesAutoresizingMaskIntoConstraints = false
     collectionView.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+  }
+
+  private func setupView() {
+    view.backgroundColor = .white
+
+    skipButton.translatesAutoresizingMaskIntoConstraints = false
+    nextButton.translatesAutoresizingMaskIntoConstraints = false
+    collectionView.translatesAutoresizingMaskIntoConstraints = false
+    pageController.translatesAutoresizingMaskIntoConstraints = false
 
     view.addSubview(collectionView)
+    view.addSubview(pageController)
+    view.addSubview(skipButton)
+    view.addSubview(nextButton)
 
     NSLayoutConstraint.activate([
+      // Skip Button
+      skipButton.widthAnchor.constraint(equalToConstant: 40),
+      skipButton.heightAnchor.constraint(equalToConstant: 40),
+      skipButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 12),
+      skipButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+
+      // Next Button
+      nextButton.widthAnchor.constraint(equalToConstant: 40),
+      nextButton.heightAnchor.constraint(equalToConstant: 40),
+      nextButton.topAnchor.constraint(equalTo: collectionView.topAnchor, constant: 12),
+      nextButton.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: -10),
+
+      // Collection View
       collectionView.topAnchor.constraint(equalTo: view.topAnchor),
       collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+      collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+      // Page Controller
+      pageController.heightAnchor.constraint(equalToConstant: 40),
+      pageController.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      pageController.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      pageController.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
   }
 
@@ -88,10 +142,6 @@ final class OnboardingViewController: UIViewController {
     section.orthogonalScrollingBehavior = .groupPaging
 
     return section
-  }
-
-  private func setupView() {
-    view.backgroundColor = .white
   }
 }
 
