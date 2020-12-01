@@ -14,6 +14,22 @@ final class OnboardingViewController: UIViewController {
 
   private var collectionView: UICollectionView!
 
+  // MARK: -
+
+  private let onBoardingPages: [Onboarding] = {
+    let firstPage = Onboarding(title: "Share a great listen",
+                               subTitle: "It's free to send your books to the people in your life. Every recipient's first book is on us.",
+                               imageName: "page1")
+    let secondPage = Onboarding(title: "Send from your library",
+                                subTitle: "Tap the More menu next to any book. Choose \"Send this Book\"",
+                                imageName: "page2")
+    let thirdPage = Onboarding(title: "Send from the player",
+                               subTitle: "Tap the More menu in the upper corner. Choose \"Send this Book\"",
+                               imageName: "page3")
+
+    return [firstPage, secondPage, thirdPage]
+  }()
+
   // MARK: - View Life Cycle
 
   override func viewDidLoad() {
@@ -83,11 +99,15 @@ final class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return onBoardingPages.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! OnboardingCollectionViewCell
+
+    let onboardingPage = onBoardingPages[indexPath.item]
+
+    cell.configure(with: onboardingPage)
     return cell
   }
 }
