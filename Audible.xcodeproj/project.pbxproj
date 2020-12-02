@@ -98,7 +98,7 @@
 		E179B2772574A0800049418F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				E179B279257568800049418F /* Onboarding  */,
+				E179B279257568800049418F /* Onboarding View Controller */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -111,13 +111,13 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E179B279257568800049418F /* Onboarding  */ = {
+		E179B279257568800049418F /* Onboarding View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				E179B2642574A0290049418F /* OnboardingViewController.swift */,
 				E179B27C257572560049418F /* Collection View Cells */,
 			);
-			path = "Onboarding ";
+			path = "Onboarding View Controller";
 			sourceTree = "<group>";
 		};
 		E179B27C257572560049418F /* Collection View Cells */ = {

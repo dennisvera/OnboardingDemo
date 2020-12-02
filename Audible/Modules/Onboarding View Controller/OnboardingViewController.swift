@@ -77,6 +77,7 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
     layout.minimumLineSpacing = 0
 
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.showsHorizontalScrollIndicator = false
     collectionView.backgroundColor = .white
     collectionView.isPagingEnabled = true
     collectionView.dataSource = self
