@@ -10,32 +10,32 @@ import UIKit
 
 final class LoginCollectionViewCell: UICollectionViewCell {
 
-    // MARK: - Static Properties
+  // MARK: - Static Properties
 
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
+  static var reuseIdentifier: String {
+    return String(describing: self)
+  }
 
-    // MARK: - Properties
+  // MARK: - Properties
 
-    // MARK: - Initialization
+  // MARK: - Initialization
 
-    override init(frame: CGRect) {
-      super.init(frame: frame)
+  override init(frame: CGRect) {
+    super.init(frame: frame)
 
-      setupViews()
-    }
+    setupViews()
+  }
 
-    required init?(coder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
-    }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
-    // MARK: - Helper Methods
+  // MARK: - Helper Methods
 
-    private func setupViews() {
-      backgroundColor = .brown
-    }
+  private func setupViews() {
+    backgroundColor = .white
+  }
 
-    func configure(with onboarding: Onboarding) {
-    }
+  func configure(with onboarding: Onboarding) {
+  }
 }

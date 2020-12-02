@@ -14,7 +14,7 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
 
   private var collectionView: UICollectionView!
 
-  private lazy var pageController: UIPageControl = {
+  private lazy var pageControl: UIPageControl = {
     let pageController = UIPageControl()
     pageController.pageIndicatorTintColor = .lightGray
     pageController.currentPageIndicatorTintColor = .orange
@@ -37,6 +37,12 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
     button.setTitleColor(.orange, for: .normal)
     return button
   }()
+
+  // MARK: -
+
+  private var skipButtonTopAnchor: NSLayoutConstraint!
+  private var nextButtonTopAnchor: NSLayoutConstraint!
+  private var pageControlBotttomAnchor: NSLayoutConstraint!
 
   // MARK: -
 
@@ -89,24 +95,28 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
     skipButton.translatesAutoresizingMaskIntoConstraints = false
     nextButton.translatesAutoresizingMaskIntoConstraints = false
     collectionView.translatesAutoresizingMaskIntoConstraints = false
-    pageController.translatesAutoresizingMaskIntoConstraints = false
+    pageControl.translatesAutoresizingMaskIntoConstraints = false
 
     view.addSubview(collectionView)
-    view.addSubview(pageController)
+    view.addSubview(pageControl)
     view.addSubview(skipButton)
     view.addSubview(nextButton)
 
+    skipButtonTopAnchor = skipButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+    nextButtonTopAnchor = nextButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+    pageControlBotttomAnchor = pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+
     NSLayoutConstraint.activate([
       // Skip Button
+      skipButtonTopAnchor,
       skipButton.widthAnchor.constraint(equalToConstant: 40),
       skipButton.heightAnchor.constraint(equalToConstant: 40),
-      skipButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       skipButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
 
       // Next Button
+      nextButtonTopAnchor,
       nextButton.widthAnchor.constraint(equalToConstant: 40),
       nextButton.heightAnchor.constraint(equalToConstant: 40),
-      nextButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
 
       // Collection View
@@ -116,10 +126,10 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
       collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
       // Page Controller
-      pageController.heightAnchor.constraint(equalToConstant: 40),
-      pageController.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      pageController.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      pageController.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+      pageControlBotttomAnchor,
+      pageControl.heightAnchor.constraint(equalToConstant: 40),
+      pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
   }
 }
@@ -168,6 +178,26 @@ extension OnboardingViewController {
   func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 
     let pageNumber = Int(targetContentOffset.pointee.x / view.frame.width)
-    pageController.currentPage = pageNumber
+    pageControl.currentPage = pageNumber
+
+    // Animate constraints when you reach the login screen (last page)
+    if pageNumber == onBoardingPages.count {
+      nextButtonTopAnchor.constant = -80
+      skipButtonTopAnchor.constant = -80
+      pageControlBotttomAnchor.constant = 60
+    } else {
+      nextButtonTopAnchor.constant = 0
+      skipButtonTopAnchor.constant = 0
+      pageControlBotttomAnchor.constant = 0
+    }
+
+    UIView.animate(withDuration: 0.4,
+                   delay: 0,
+                   usingSpringWithDamping: 1,
+                   initialSpringVelocity: 1,
+                   options: .curveEaseOut,
+                   animations: {
+                    self.view.layoutIfNeeded()
+    }, completion: nil)
   }
 }
