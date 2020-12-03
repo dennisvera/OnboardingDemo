@@ -79,7 +79,7 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
       textView.bottomAnchor.constraint(equalTo: bottomAnchor),
       textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
       textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-      textView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)
+      textView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4)
     ])
   }
 
