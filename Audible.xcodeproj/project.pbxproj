@@ -15,6 +15,7 @@
 		E179B27B257572500049418F /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B27A257572500049418F /* OnboardingCollectionViewCell.swift */; };
 		E179B27F2575AE8A0049418F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B27E2575AE8A0049418F /* Onboarding.swift */; };
 		E179B2812576DE070049418F /* LoginCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B2802576DE070049418F /* LoginCollectionViewCell.swift */; };
+		E1E3A6C9257B1EBC004101D0 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3A6C8257B1EBC004101D0 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		E179B27A257572500049418F /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingCollectionViewCell.swift; path = ../OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		E179B27E2575AE8A0049418F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		E179B2802576DE070049418F /* LoginCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCollectionViewCell.swift; sourceTree = "<group>"; };
+		E1E3A6C8257B1EBC004101D0 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				E179B2742574A0350049418F /* Application Delegates */,
 				E179B27D2575AE740049418F /* Models */,
 				E179B2772574A0800049418F /* Modules */,
+				E1E3A6C7257B1EA8004101D0 /* Helpers */,
 				E179B2762574A06D0049418F /* Storyboards */,
 				E179B2752574A0590049418F /* Resources */,
 				E179B2782574A08B0049418F /* Supporting Files */,
@@ -137,6 +140,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E1E3A6C7257B1EA8004101D0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E1E3A6C8257B1EBC004101D0 /* CustomTextField.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -207,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E3A6C9257B1EBC004101D0 /* CustomTextField.swift in Sources */,
 				E179B2812576DE070049418F /* LoginCollectionViewCell.swift in Sources */,
 				E179B2652574A0290049418F /* OnboardingViewController.swift in Sources */,
 				E179B2612574A0290049418F /* AppDelegate.swift in Sources */,

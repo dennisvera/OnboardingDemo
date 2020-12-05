@@ -26,8 +26,8 @@ final class LoginCollectionViewCell: UICollectionViewCell {
     return imageView
   }()
 
-  private let emailTextField: UITextField = {
-    let textField = UITextField()
+  private let emailTextField: CustomTExtField = {
+    let textField = CustomTExtField()
     textField.layer.borderWidth = 1
     textField.placeholder = "Enter email"
     textField.keyboardType = .emailAddress
@@ -35,8 +35,8 @@ final class LoginCollectionViewCell: UICollectionViewCell {
     return textField
   }()
 
-  private let passwordTextField: UITextField = {
-    let textField = UITextField()
+  private let passwordTextField: CustomTExtField = {
+    let textField = CustomTExtField()
     textField.layer.borderWidth = 1
     textField.isSecureTextEntry = true
     textField.placeholder = "Enter password"

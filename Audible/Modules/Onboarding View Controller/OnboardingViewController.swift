@@ -176,6 +176,10 @@ extension OnboardingViewController: UICollectionViewDelegate {
 
 extension OnboardingViewController {
 
+//  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//    view.endEditing(true)
+//  }
+
   func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 
     let pageNumber = Int(targetContentOffset.pointee.x / view.frame.width)
