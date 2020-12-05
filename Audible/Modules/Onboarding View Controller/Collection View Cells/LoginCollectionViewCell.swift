@@ -89,7 +89,7 @@ final class LoginCollectionViewCell: UICollectionViewCell {
       logoImageView.widthAnchor.constraint(equalToConstant: 160),
       logoImageView.heightAnchor.constraint(equalToConstant: 160),
       logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-      logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -200),
+      logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -140),
 
       emailTextField.heightAnchor.constraint(equalToConstant: 50),
 //      passwordTextField.heightAnchor.constraint(equalToConstant: 50),

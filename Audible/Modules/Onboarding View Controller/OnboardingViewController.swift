@@ -67,6 +67,7 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
 
     setupCollectionView()
     setupView()
+    registerForKeyboardNotifications()
   }
 
   // MARK: - Helper Methods
@@ -133,6 +134,42 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
       pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
   }
+
+  // MARK: - Notifications
+
+  private func registerForKeyboardNotifications() {
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillShow),
+                                           name: UIResponder.keyboardWillShowNotification,
+                                           object: nil)
+
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillHide),
+                                           name: UIResponder.keyboardWillHideNotification,
+                                           object: nil)
+  }
+
+  @objc private func keyboardWillShow() {
+    UIView.animate(withDuration: 0.5,
+                   delay: 0,
+                   usingSpringWithDamping: 1,
+                   initialSpringVelocity: 1,
+                   options: .curveEaseOut,
+                   animations: {
+                    self.view.frame = CGRect(x: 0, y: -50, width: self.view.frame.width, height: self.view.frame.height)
+    }, completion: nil)
+  }
+
+  @objc private func keyboardWillHide() {
+    UIView.animate(withDuration: 0.5,
+                   delay: 0,
+                   usingSpringWithDamping: 1,
+                   initialSpringVelocity: 1,
+                   options: .curveEaseOut,
+                   animations: {
+                    self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+    }, completion: nil)
+  }
 }
 
 // MARK: - UICollectionView Data Source
@@ -176,9 +213,9 @@ extension OnboardingViewController: UICollectionViewDelegate {
 
 extension OnboardingViewController {
 
-//  func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//    view.endEditing(true)
-//  }
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    view.endEditing(true)
+  }
 
   func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 
