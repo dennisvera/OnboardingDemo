@@ -28,6 +28,7 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
     let button = UIButton(type: .system)
     button.setTitle("Skip", for: .normal)
     button.setTitleColor(.orange, for: .normal)
+    button.addTarget(self, action: #selector(skipToLoginPage), for: .touchUpInside)
     return button
   }()
 
@@ -35,6 +36,7 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
     let button = UIButton(type: .system)
     button.setTitle("Next", for: .normal)
     button.setTitleColor(.orange, for: .normal)
+    button.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
     return button
   }()
 
@@ -133,6 +135,55 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
       pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
+
+    // Set Tap Gesture
+    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleViewTap)))
+  }
+
+  // MARK: -
+
+  @objc private func handleViewTap() {
+    view.endEditing(true)
+  }
+
+  @objc private func nextPage() {
+    // Check if we are on the last page and return
+    if pageControl.currentPage == onBoardingPages.count { return }
+
+    // Check if we are on the second to last page and animate constraints
+    if pageControl.currentPage == onBoardingPages.count - 1 {
+      updateButtonsAndPageControlConstraintsOffScreen()
+
+      UIView.animate(withDuration: 0.4,
+                     delay: 0,
+                     usingSpringWithDamping: 1,
+                     initialSpringVelocity: 1,
+                     options: .curveEaseOut,
+                     animations: {
+                      self.view.layoutIfNeeded()
+      }, completion: nil)
+    }
+
+    // Advance to the next page
+    let indexPath = IndexPath(item: pageControl.currentPage + 1, section: 0)
+    collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+
+    // Update the CurrentPage as we move to the next
+    pageControl.currentPage += 1
+  }
+
+  @objc private func skipToLoginPage() {
+    // Set Current Page to the second to last page
+    pageControl.currentPage = onBoardingPages.count - 1
+
+    // Then move to the last page
+    nextPage()
+  }
+
+  private func updateButtonsAndPageControlConstraintsOffScreen() {
+    nextButtonTopAnchor.constant = -60
+    skipButtonTopAnchor.constant = -60
+    pageControlBotttomAnchor.constant = 60
   }
 
   // MARK: - Notifications
@@ -224,9 +275,7 @@ extension OnboardingViewController {
 
     // Animate constraints when you reach the login screen (last page)
     if pageNumber == onBoardingPages.count {
-      nextButtonTopAnchor.constant = -80
-      skipButtonTopAnchor.constant = -80
-      pageControlBotttomAnchor.constant = 60
+      updateButtonsAndPageControlConstraintsOffScreen()
     } else {
       nextButtonTopAnchor.constant = 0
       skipButtonTopAnchor.constant = 0
