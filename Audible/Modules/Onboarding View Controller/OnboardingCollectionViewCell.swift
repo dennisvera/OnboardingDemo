@@ -104,6 +104,12 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
                                 range: NSRange(location: 0, length: rangeLength))
 
     textView.attributedText = attributedText
-    imageView.image = UIImage(named: onboarding.imageName)
+
+    var imageName = onboarding.imageName
+    if UIDevice.current.orientation.isLandscape {
+      imageName += "_landscape"
+    }
+
+    imageView.image = UIImage(named: imageName)
   }
 }

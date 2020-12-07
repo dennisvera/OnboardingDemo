@@ -207,7 +207,11 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
                    initialSpringVelocity: 1,
                    options: .curveEaseOut,
                    animations: {
-                    self.view.frame = CGRect(x: 0, y: -50, width: self.view.frame.width, height: self.view.frame.height)
+                    let yCoordinate: CGFloat = UIDevice.current.orientation.isLandscape ? -110 : -50
+                    self.view.frame = CGRect(x: 0,
+                                             y: yCoordinate,
+                                             width: self.view.frame.width,
+                                             height: self.view.frame.height)
     }, completion: nil)
   }
 
@@ -218,7 +222,10 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
                    initialSpringVelocity: 1,
                    options: .curveEaseOut,
                    animations: {
-                    self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+                    self.view.frame = CGRect(x: 0,
+                                             y: 0,
+                                             width: self.view.frame.width,
+                                             height: self.view.frame.height)
     }, completion: nil)
   }
 }
@@ -226,6 +233,7 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
 // MARK: - UICollectionView Data Source
 
 extension OnboardingViewController: UICollectionViewDataSource {
+
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return onBoardingPages.count + 1
   }
@@ -257,6 +265,17 @@ extension OnboardingViewController: UICollectionViewDelegate {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: view.frame.width, height: view.frame.height)
+  }
+
+  override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+    collectionView.collectionViewLayout.invalidateLayout()
+
+    let indextPath = IndexPath(item: pageControl.currentPage, section: 0)
+
+    DispatchQueue.main.async {
+      self.collectionView.scrollToItem(at: indextPath, at: .centeredHorizontally, animated: true)
+      self.collectionView.reloadData()
+    }
   }
 }
 
