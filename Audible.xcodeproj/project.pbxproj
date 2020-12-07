@@ -9,20 +9,22 @@
 /* Begin PBXBuildFile section */
 		E179B2612574A0290049418F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B2602574A0290049418F /* AppDelegate.swift */; };
 		E179B2632574A0290049418F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B2622574A0290049418F /* SceneDelegate.swift */; };
-		E179B2652574A0290049418F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B2642574A0290049418F /* OnboardingViewController.swift */; };
+		E179B2652574A0290049418F /* LogginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B2642574A0290049418F /* LogginViewController.swift */; };
 		E179B26A2574A02A0049418F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E179B2692574A02A0049418F /* Assets.xcassets */; };
 		E179B26D2574A02A0049418F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E179B26B2574A02A0049418F /* LaunchScreen.storyboard */; };
 		E179B27B257572500049418F /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B27A257572500049418F /* OnboardingCollectionViewCell.swift */; };
 		E179B27F2575AE8A0049418F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B27E2575AE8A0049418F /* Onboarding.swift */; };
 		E179B2812576DE070049418F /* LoginCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E179B2802576DE070049418F /* LoginCollectionViewCell.swift */; };
 		E1E3A6C9257B1EBC004101D0 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3A6C8257B1EBC004101D0 /* CustomTextField.swift */; };
+		E1E3A6CB257DAC1C004101D0 /* MainNavigationContorller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3A6CA257DAC1C004101D0 /* MainNavigationContorller.swift */; };
+		E1E3A6CE257DB347004101D0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3A6CD257DB347004101D0 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E179B25D2574A0290049418F /* Audible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E179B2602574A0290049418F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E179B2622574A0290049418F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E179B2642574A0290049418F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		E179B2642574A0290049418F /* LogginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogginViewController.swift; sourceTree = "<group>"; };
 		E179B2692574A02A0049418F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E179B26C2574A02A0049418F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E179B26E2574A02A0049418F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -30,6 +32,8 @@
 		E179B27E2575AE8A0049418F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		E179B2802576DE070049418F /* LoginCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCollectionViewCell.swift; sourceTree = "<group>"; };
 		E1E3A6C8257B1EBC004101D0 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		E1E3A6CA257DAC1C004101D0 /* MainNavigationContorller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationContorller.swift; sourceTree = "<group>"; };
+		E1E3A6CD257DB347004101D0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +105,9 @@
 		E179B2772574A0800049418F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				E179B279257568800049418F /* Onboarding View Controller */,
+				E1E3A6CA257DAC1C004101D0 /* MainNavigationContorller.swift */,
+				E1E3A6CC257DB326004101D0 /* Home VIew Controller */,
+				E179B279257568800049418F /* Logging View Controller */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -114,13 +120,13 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E179B279257568800049418F /* Onboarding View Controller */ = {
+		E179B279257568800049418F /* Logging View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E179B2642574A0290049418F /* OnboardingViewController.swift */,
+				E179B2642574A0290049418F /* LogginViewController.swift */,
 				E179B27C257572560049418F /* Collection View Cells */,
 			);
-			path = "Onboarding View Controller";
+			path = "Logging View Controller";
 			sourceTree = "<group>";
 		};
 		E179B27C257572560049418F /* Collection View Cells */ = {
@@ -146,6 +152,14 @@
 				E1E3A6C8257B1EBC004101D0 /* CustomTextField.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E1E3A6CC257DB326004101D0 /* Home VIew Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E1E3A6CD257DB347004101D0 /* HomeViewController.swift */,
+			);
+			path = "Home VIew Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,8 +234,10 @@
 			files = (
 				E1E3A6C9257B1EBC004101D0 /* CustomTextField.swift in Sources */,
 				E179B2812576DE070049418F /* LoginCollectionViewCell.swift in Sources */,
-				E179B2652574A0290049418F /* OnboardingViewController.swift in Sources */,
+				E1E3A6CB257DAC1C004101D0 /* MainNavigationContorller.swift in Sources */,
+				E179B2652574A0290049418F /* LogginViewController.swift in Sources */,
 				E179B2612574A0290049418F /* AppDelegate.swift in Sources */,
+				E1E3A6CE257DB347004101D0 /* HomeViewController.swift in Sources */,
 				E179B27F2575AE8A0049418F /* Onboarding.swift in Sources */,
 				E179B2632574A0290049418F /* SceneDelegate.swift in Sources */,
 				E179B27B257572500049418F /* OnboardingCollectionViewCell.swift in Sources */,

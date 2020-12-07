@@ -1,5 +1,5 @@
 //
-//  OnboardingViewController.swift
+//  LogginViewController.swift
 //  Audible
 //
 //  Created by Dennis Vera on 11/29/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class OnboardingViewController: UIViewController, UICollectionViewDelegateFlowLayout {
+final class LogginViewController: UIViewController, UICollectionViewDelegateFlowLayout {
 
   // MARK: - Properties
 
@@ -232,7 +232,7 @@ final class OnboardingViewController: UIViewController, UICollectionViewDelegate
 
 // MARK: - UICollectionView Data Source
 
-extension OnboardingViewController: UICollectionViewDataSource {
+extension LogginViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return onBoardingPages.count + 1
@@ -261,7 +261,7 @@ extension OnboardingViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionView Delegate
 
-extension OnboardingViewController: UICollectionViewDelegate {
+extension LogginViewController: UICollectionViewDelegate {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: view.frame.width, height: view.frame.height)
@@ -281,7 +281,7 @@ extension OnboardingViewController: UICollectionViewDelegate {
 
 // MARK: - UIScrollView Delegate
 
-extension OnboardingViewController {
+extension LogginViewController {
 
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     view.endEditing(true)
