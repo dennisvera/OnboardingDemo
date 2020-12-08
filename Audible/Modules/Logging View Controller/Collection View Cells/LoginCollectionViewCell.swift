@@ -44,13 +44,18 @@ final class LoginCollectionViewCell: UICollectionViewCell {
     return textField
   }()
 
-  private let loginButton: UIButton = {
+  private lazy var loginButton: UIButton = {
     let button = UIButton(type: .system)
     button.setTitleColor(.white, for: .normal)
     button.setTitle("Log In", for: .normal)
     button.backgroundColor = .orange
+    button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
     return button
   }()
+
+  // MARK: -
+
+  weak var delegate: LogginViewControllerDelegate?
 
   // MARK: - Initialization
 
@@ -77,12 +82,9 @@ final class LoginCollectionViewCell: UICollectionViewCell {
     stackView.translatesAutoresizingMaskIntoConstraints = false
     logoImageView.translatesAutoresizingMaskIntoConstraints = false
     emailTextField.translatesAutoresizingMaskIntoConstraints = false
-//    passwordTextField.translatesAutoresizingMaskIntoConstraints = false
 
     addSubview(stackView)
     addSubview(logoImageView)
-//    addSubview(emailTextField)
-//    addSubview(passwordTextField)
 
     NSLayoutConstraint.activate([
       // Logo Image View
@@ -91,8 +93,8 @@ final class LoginCollectionViewCell: UICollectionViewCell {
       logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
       logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -140),
 
+      // Email Text Field
       emailTextField.heightAnchor.constraint(equalToConstant: 50),
-//      passwordTextField.heightAnchor.constraint(equalToConstant: 50),
 
       // Stack View
       stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
@@ -101,6 +103,7 @@ final class LoginCollectionViewCell: UICollectionViewCell {
     ])
   }
 
-  func configure(with onboarding: Onboarding) {
+  @objc private func handleLogin() {
+    delegate?.finishLoggingIn()
   }
 }

@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol LogginViewControllerDelegate: class {
+
+  func finishLoggingIn()
+}
+
 final class LogginViewController: UIViewController, UICollectionViewDelegateFlowLayout {
 
   // MARK: - Properties
@@ -243,6 +248,7 @@ extension LogginViewController: UICollectionViewDataSource {
       guard let loginCell = collectionView.dequeueReusableCell(withReuseIdentifier: LoginCollectionViewCell.reuseIdentifier,
                                                                for: indexPath) as? LoginCollectionViewCell else {
                                                                 fatalError("Unable to Dequeue Cell.") }
+      loginCell.delegate = self
 
       return loginCell
     }
@@ -309,5 +315,18 @@ extension LogginViewController {
                    animations: {
                     self.view.layoutIfNeeded()
     }, completion: nil)
+  }
+}
+
+// MARK: - Loggin ViewController Delegate
+
+extension LogginViewController: LogginViewControllerDelegate {
+
+  func finishLoggingIn() {
+    dismiss(animated: true)
+
+    let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+    guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
+    mainNavigationController.viewControllers = [HomeViewController()]
   }
 }
