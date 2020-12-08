@@ -32,6 +32,10 @@ final class HomeViewController: UIViewController {
 
   private func setupView() {
     view.backgroundColor = .white
+    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out",
+                                                       style: .plain,
+                                                       target: self,
+                                                       action: #selector(handleSignOut))
 
     title = "Library"
 
@@ -43,5 +47,13 @@ final class HomeViewController: UIViewController {
       imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
+  }
+
+  @objc private func handleSignOut() {
+    UserDefaults.standard.setIsLoggedIn(value: false)
+
+    let loginController = LogginViewController()
+    loginController.modalPresentationStyle = .fullScreen
+    present(loginController, animated: true)
   }
 }

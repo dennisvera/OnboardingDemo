@@ -328,5 +328,7 @@ extension LogginViewController: LogginViewControllerDelegate {
     let rootViewController = UIApplication.shared.keyWindow?.rootViewController
     guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
     mainNavigationController.viewControllers = [HomeViewController()]
+
+    UserDefaults.standard.setIsLoggedIn(value: true)
   }
 }

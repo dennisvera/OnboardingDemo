@@ -12,7 +12,7 @@ final class MainNavigationController: UINavigationController {
 
   // MARK: - Properties
 
-  let isLoggedIn = false
+  let isLoggedIn = UserDefaults.standard.isLoggedIn()
 
   // MARK: - View Life Cycle 
 
