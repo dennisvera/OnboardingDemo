@@ -37,9 +37,9 @@ final class MainNavigationController: UINavigationController {
   }
 
   @objc private func showLogging() {
-    let logginViewController = LogginViewController()
-    logginViewController.modalPresentationStyle = .fullScreen
+    let loginViewController = LoginViewController()
+    loginViewController.modalPresentationStyle = .fullScreen
 
-    present(logginViewController, animated: true)
+    present(loginViewController, animated: true)
   }
 }

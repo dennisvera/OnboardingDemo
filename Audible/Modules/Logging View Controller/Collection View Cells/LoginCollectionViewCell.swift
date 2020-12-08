@@ -55,7 +55,7 @@ final class LoginCollectionViewCell: UICollectionViewCell {
 
   // MARK: -
 
-  weak var delegate: LogginViewControllerDelegate?
+  weak var delegate: LoginViewControllerDelegate?
 
   // MARK: - Initialization
 

@@ -1,5 +1,5 @@
 //
-//  LogginViewController.swift
+//  LoginViewController.swift
 //  Audible
 //
 //  Created by Dennis Vera on 11/29/20.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol LogginViewControllerDelegate: class {
+protocol LoginViewControllerDelegate: class {
 
   func finishLoggingIn()
 }
 
-final class LogginViewController: UIViewController, UICollectionViewDelegateFlowLayout {
+final class LoginViewController: UIViewController, UICollectionViewDelegateFlowLayout {
 
   // MARK: - Properties
 
@@ -237,7 +237,7 @@ final class LogginViewController: UIViewController, UICollectionViewDelegateFlow
 
 // MARK: - UICollectionView Data Source
 
-extension LogginViewController: UICollectionViewDataSource {
+extension LoginViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return onBoardingPages.count + 1
@@ -267,7 +267,7 @@ extension LogginViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionView Delegate
 
-extension LogginViewController: UICollectionViewDelegate {
+extension LoginViewController: UICollectionViewDelegate {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: view.frame.width, height: view.frame.height)
@@ -287,7 +287,7 @@ extension LogginViewController: UICollectionViewDelegate {
 
 // MARK: - UIScrollView Delegate
 
-extension LogginViewController {
+extension LoginViewController {
 
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     view.endEditing(true)
@@ -320,7 +320,7 @@ extension LogginViewController {
 
 // MARK: - Loggin ViewController Delegate
 
-extension LogginViewController: LogginViewControllerDelegate {
+extension LoginViewController: LoginViewControllerDelegate {
 
   func finishLoggingIn() {
     dismiss(animated: true)

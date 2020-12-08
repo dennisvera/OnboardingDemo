@@ -52,8 +52,8 @@ final class HomeViewController: UIViewController {
   @objc private func handleSignOut() {
     UserDefaults.standard.setIsLoggedIn(value: false)
 
-    let loginController = LogginViewController()
-    loginController.modalPresentationStyle = .fullScreen
-    present(loginController, animated: true)
+    let loginViewController = LoginViewController()
+    loginViewController.modalPresentationStyle = .fullScreen
+    present(loginViewController, animated: true)
   }
 }
